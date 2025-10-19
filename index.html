@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="icon" type="image/svg+xml" href="./images/shanmugam_ico.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Kannada OTT by Team M.Tech,SIT</title>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="logo.png" class="brand-logo" alt="logo" />
+    <div class="right-container">
+      <input type="text" id="searchBox" class="search-box" placeholder="Search" />
+      <button class="sub-btn">Subscribe</button>
+      <a href="#" class="login-link">Login</a>
+      <select id="languageSelect" class="lang-select">
+        <option value="en">English</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+    </div>
+    <button class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+<!-- Filters -->
+<!-- Filters -->
+<!-- Filters -->
+<section class="filters">
+  <button class="filter-btn" data-filter="all" data-en="All" data-kn="ಎಲ್ಲಾ">All</button>
+  <button class="filter-btn" data-filter="top-imdb" data-en="Top IMDb" data-kn="ಟಾಪ್ ಐಎಂಬಿಡಿ">Top IMDb</button>
+  <button class="filter-btn" data-filter="comedy" data-en="Comedy" data-kn="ಹಾಸ್ಯ">Comedy</button>
+  <button class="filter-btn" data-filter="new-releases" data-en="New Releases" data-kn="ಹೊಸ ಬಿಡುಗಡೆಯಗಳು">New Releases</button>
+  <button class="filter-btn" data-filter="based-watch" data-en="Based on Your Watch" data-kn="ನಿಮ್ಮ ವೀಕ್ಷಣೆ ಆಧರಿಸಿ">Based on Your Watch</button>
+</section>
+
+
+  <!-- Movie Rows -->
+  <section class="movie-row">
+    <h1 class="title" data-en="Top IMDb" data-kn="ಟಾಪ್ ಐಎಂಬಿಡಿ">Top IMDb</h1>
+    <div class="movies-list">
+      <button class="pre-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-left.png"/></button>
+<button class="nxt-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-right.png"/></button>
+
+      <div class="card-container" id="top-imdb">
+        <!-- Cards injected via JS -->
+      </div>
+    </div>
+  </section>
+
+  <section class="movie-row">
+    <h1 class="title" data-en="Based on Your Watch" data-kn="ನಿಮ್ಮ ವೀಕ್ಷಣೆ ಆಧರಿಸಿ">Based on Your Watch</h1>
+    <div class="movies-list">
+      <button class="pre-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-left.png"/></button>
+<button class="nxt-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-right.png"/></button>
+
+      <div class="card-container" id="based-watch"></div>
+    </div>
+  </section>
+
+  <section class="movie-row">
+    <h1 class="title" data-en="Comedy" data-kn="ಹಾಸ್ಯ">Comedy</h1>
+    <div class="movies-list">
+      <button class="pre-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-left.png"/></button>
+<button class="nxt-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-right.png"/></button>
+
+      <div class="card-container" id="comedy"></div>
+    </div>
+  </section>
+
+  <section class="movie-row">
+    <h1 class="title" data-en="New Releases" data-kn="ಹೊಸ ಬಿಡುಗಡೆಯಗಳು">New Releases</h1>
+    <div class="movies-list">
+      <button class="pre-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-left.png"/></button>
+<button class="nxt-btn"><img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-right.png"/></button>
+
+      <div class="card-container" id="new-releases"></div>
+    </div>
+  </section>
+
+  <!-- Movie Modal -->
+<div class="modal-overlay" id="movieModal">
+  <div class="modal-content">
+    <iframe
+  id="modalVideo"
+  class="modal-video"
+  src="https://www.youtube.com/embed/K4TOrB7at0Y?autoplay=1&mute=1&loop=1&playlist=K4TOrB7at0Y"
+  frameborder="0"
+  allow="autoplay; fullscreen"
+  allowfullscreen>
+</iframe>
+    
+    <div class="modal-info">
+      <img id="modalImage" class="modal-thumb" src="" alt="Movie Thumbnail" />
+      <div class="modal-text">
+        <h1 id="modalTitle">Movie Title</h1>
+        <p id="modalMeta">2025 • U/A 13+ • 1 Season • Kannada</p>
+        <p id="modalDescription">Description goes here...</p>
+        <div class="modal-tags">Comedy • Action • Thriller</div>
+        
+        <div class="modal-buttons">
+          <button class="watch-btn">▶ Watch Now</button>
+          <button class="add-btn">+ Watchlist</button>
+          <button id="fullscreenBtn">⛶ Fullscreen</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="modal-close" id="closeModal">✖</button>
+  </div>
+</div>
+
+
+  <script src="movies.js"></script>
+  <script src="app.js"></script>
+
+  
+</body>
+</html>

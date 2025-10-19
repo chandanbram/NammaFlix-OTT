@@ -1,0 +1,439 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: var(--bg-color);
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+}
+
+/* Default dark mode variables */
+:root {
+  --bg-color: #0c111b;
+  --text-color: #fff;
+  --nav-bg: #0c111b;
+  --accent-color: #1f80e0;
+  --card-bg: #000;
+  --watchlist-color: rgba(255,255,255,0.6);
+}
+
+/* Light mode variables */
+body.light {
+  --bg-color: #f5f5f5;
+  --text-color: #111;
+  --nav-bg: #fff;
+  --accent-color: #1f80e0;
+  --card-bg: #fff;
+  --watchlist-color: rgba(0,0,0,0.6);
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 4%;
+  background-color: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.brand-logo {
+  height: 70px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin-left: 30px;
+}
+
+.nav-items a {
+  text-decoration: none;
+  margin-left: 20px;
+  color: var(--text-color);
+  opacity: 0.9;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.right-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  background: transparent;
+  outline: none;
+  height: 32px;
+  color: var(--text-color);
+  width: 220px;
+  padding: 0 5px;
+  transition: 0.3s;
+}
+
+.search-box:focus {
+  width: 320px;
+  border-color: var(--accent-color);
+}
+
+.sub-btn {
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  height: 32px;
+  padding: 0 15px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.login-link {
+  background-color: red;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Language select */
+.lang-select {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Navbar toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35px;
+  height: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 100%;
+  background: #d5a60d;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Navbar */
+@media(max-width:768px){
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    background: var(--nav-bg);
+  }
+  .nav-links.active { display:flex; }
+  .nav-items { margin: 10px 0; }
+  .menu-toggle { display:flex; }
+}
+
+/* Movie rows */
+.movie-row { margin-top: 100px; padding: 0 2%; }
+.title { font-size: 24px; margin: 15px 0; opacity: 0.95; }
+
+/* Card list */
+.movies-list {
+  position: relative;
+  margin-bottom: 40px;
+  height: 260px;
+}
+
+.card-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 15px;
+  padding-bottom: 10px;
+}
+
+.card-container::-webkit-scrollbar { display: none; }
+.card {
+  width: 180px;          
+  height: 260px;         
+  background: var(--card-bg);
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  overflow: hidden;      
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(25,33,51,0.9) 70%, transparent);
+}
+
+.name {
+  font-size: 16px;       
+  font-weight: 700;      
+  text-transform: capitalize;
+}
+
+.des {
+  font-size: 14px;       
+  opacity: 0.85;
+}
+body.light .name,
+body.light .des {
+  color: #fff;
+}
+
+/* Watchlist button */
+.watchlist-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--watchlist-color);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px 0;
+  text-align: right;
+}
+.watchlist-btn[aria-pressed="true"] { color: var(--accent-color); }
+
+/* Scroll buttons */
+.pre-btn, .nxt-btn {
+  position: absolute;
+  top: 0;
+  width: 5%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+}
+body.light .pre-btn {
+  background: linear-gradient(to right, #000 0%, transparent);
+}
+
+body.light .nxt-btn {
+  background: linear-gradient(to left, #000 0%, transparent);
+}
+.filters {
+  margin-top: 90px; /* Below navbar */
+  padding: 10px 2%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background: var(--accent-color);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: #fff;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.pre-btn { left: 0; background: linear-gradient(to right, var(--bg-color) 0%, transparent); }
+.nxt-btn { right: 0; background: linear-gradient(to left, var(--bg-color) 0%, transparent); }
+
+.pre-btn img, .nxt-btn img { width: 25px; height: 25px; opacity: 0; transition: 0.3s; }
+.pre-btn:hover img, .nxt-btn:hover img { opacity: 1; }
+
+/* Hover effects for cards */
+.card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+/* Overlay for hover play button */
+.card::after {
+  content: "▶ Play";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(0,0,0,0.7);
+  padding: 8px 15px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.card:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- Movie Modal Styles --- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.modal-info {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  padding: 3rem;
+  color: #fff;
+}
+
+.modal-thumb {
+  width: 160px;
+  border-radius: 8px;
+  margin-right: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.modal-text h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#modalMeta {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+#modalDescription {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.modal-tags {
+  color: #f1f1f1;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.modal-buttons button {
+  margin-right: 1rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.watch-btn {
+  background: #1f80e0;
+  color: #fff;
+}
+
+.add-btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+#fullscreenBtn {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 3;
+}
+
